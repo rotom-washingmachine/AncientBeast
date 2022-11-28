@@ -121,11 +121,17 @@ export default (G) => {
 				else {
 					G.grid.queryDirection({
 						fnOnConfirm: function () {
-							ability.animation(
-								[arguments[1].hex],
-								arguments[1],
-								arguments[2]
-							);
+							if (arguments[1].creature) {
+								ability.animation(
+									[arguments[1].hex],
+									arguments[1],
+									arguments[2]
+								);
+							} else {
+								ability.animation(
+									...arguments
+								);
+							}														
 						},
 						flipped: stomper.player.flipped,
 						team: this._targetTeam,
